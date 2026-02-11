@@ -28,6 +28,11 @@
         box-sizing: border-box;
       }
 
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 86px;
+      }
+
       body {
         margin: 0;
         font-family: "Montserrat", "Segoe UI", sans-serif;
@@ -89,6 +94,7 @@
         opacity: 0;
         transform: translateY(-115%);
         pointer-events: none;
+        will-change: transform, opacity;
         transition:
           opacity 260ms ease,
           transform 260ms ease,
@@ -752,11 +758,11 @@
           gap: 7px;
         }
 
-        nav a {
+        .topbar nav a {
           font-size: clamp(0.64rem, 2.3vw, 0.8rem);
         }
 
-        .nav-contact {
+        .topbar .nav-contact {
           padding: 4px 8px;
         }
 
@@ -765,40 +771,44 @@
           text-align: center;
         }
 
-        body:not(.header-folded) .hero .brand-row {
+        .hero .brand-row {
           flex-direction: column;
           align-items: center;
           gap: 10px;
           padding-top: 18px;
         }
 
-        body:not(.header-folded) .hero .brand-logo {
+        .hero .brand-logo {
           width: 100%;
           justify-content: center;
         }
 
-        body:not(.header-folded) .hero .brand-logo img {
+        .hero .brand-logo img {
           width: 100%;
           max-width: min(94vw, 430px);
         }
 
-        body:not(.header-folded) .hero nav {
+        .hero nav {
           width: 100%;
           justify-content: center;
           gap: 8px;
           flex-wrap: nowrap;
         }
 
-        body:not(.header-folded) .hero nav a {
-          font-size: clamp(0.68rem, 2.55vw, 0.86rem);
+        .hero nav a {
+          font-size: clamp(0.94rem, 3.8vw, 1.16rem);
         }
 
-        body:not(.header-folded) .hero .nav-contact {
-          padding: 5px 9px;
+        .hero .nav-contact {
+          padding: 9px 14px;
         }
       }
 
       @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
         body.reveal-ready .reveal-on-scroll {
           opacity: 1;
           transform: none;
@@ -1001,21 +1011,48 @@
     </main>
     <script>
       (() => {
-        const foldThreshold = 64;
+        const foldEnterThreshold = 72;
+        const foldExitThreshold = 34;
         const root = document.body;
         const logos = document.querySelectorAll(".brand-logo");
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+        let isFolded = window.scrollY > foldEnterThreshold;
+        let isTicking = false;
 
-        const setFoldState = () => {
-          root.classList.toggle("header-folded", window.scrollY > foldThreshold);
+        const applyFoldClass = () => {
+          root.classList.toggle("header-folded", isFolded);
         };
 
-        setFoldState();
-        window.addEventListener("scroll", setFoldState, { passive: true });
+        const setFoldState = () => {
+          const y = window.scrollY || window.pageYOffset;
+
+          if (!isFolded && y > foldEnterThreshold) {
+            isFolded = true;
+          } else if (isFolded && y < foldExitThreshold) {
+            isFolded = false;
+          }
+
+          applyFoldClass();
+          isTicking = false;
+        };
+
+        const onScroll = () => {
+          if (isTicking) {
+            return;
+          }
+
+          isTicking = true;
+          window.requestAnimationFrame(setFoldState);
+        };
+
+        applyFoldClass();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", setFoldState);
 
         logos.forEach((logo) => {
           logo.addEventListener("click", (event) => {
             event.preventDefault();
-            const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+            const behavior = prefersReducedMotion.matches ? "auto" : "smooth";
             window.scrollTo({ top: 0, behavior });
           });
         });
