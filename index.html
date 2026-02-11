@@ -220,20 +220,71 @@
       }
 
       .card {
+        position: relative;
+        overflow: hidden;
         border: 1px solid rgba(255, 255, 255, 0.22);
         border-radius: 18px;
         padding: 18px;
         background: linear-gradient(180deg, rgba(27, 61, 91, 0.88) 0%, rgba(22, 51, 76, 0.9) 100%);
         box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+        transition:
+          transform 220ms ease,
+          border-color 220ms ease,
+          box-shadow 220ms ease;
+      }
+
+      .card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 12% 14%, rgba(245, 157, 36, 0.22), transparent 42%);
+        opacity: 0;
+        transition: opacity 240ms ease;
+        pointer-events: none;
+      }
+
+      .card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -62%;
+        width: 42%;
+        height: 100%;
+        background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+        transition: left 420ms ease;
+        pointer-events: none;
+      }
+
+      .card:hover,
+      .card:focus-within {
+        transform: translateY(-4px);
+        border-color: rgba(245, 157, 36, 0.55);
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+          0 14px 28px rgba(5, 18, 30, 0.35);
+      }
+
+      .card:hover::before,
+      .card:focus-within::before {
+        opacity: 1;
+      }
+
+      .card:hover::after,
+      .card:focus-within::after {
+        left: 132%;
       }
 
       .card h3 {
+        position: relative;
+        z-index: 1;
         margin: 0;
         font-size: 1.15rem;
         color: #ffffff;
       }
 
       .card p {
+        position: relative;
+        z-index: 1;
         margin: 9px 0 0;
         color: rgba(237, 243, 248, 0.84);
         line-height: 1.55;
@@ -244,6 +295,65 @@
         display: grid;
         grid-template-columns: 1.26fr 1fr;
         gap: 24px;
+      }
+
+      .about-layout {
+        margin-top: 18px;
+        display: grid;
+        grid-template-columns: 1.34fr 0.66fr;
+        gap: 26px;
+        align-items: start;
+      }
+
+      .about-main {
+        min-width: 0;
+      }
+
+      .competencies-block {
+        margin-top: 20px;
+        padding-top: 14px;
+        border-top: 1px solid rgba(255, 255, 255, 0.14);
+      }
+
+      .competencies-block h3 {
+        margin: 0;
+        color: #ffffff;
+        font-size: 1.45rem;
+      }
+
+      .about-photo-panel {
+        position: relative;
+        border: 0;
+        border-radius: 24px;
+        overflow: hidden;
+        height: clamp(320px, 34vw, 430px);
+        background:
+          radial-gradient(circle at 18% 20%, rgba(245, 157, 36, 0.34), transparent 42%),
+          radial-gradient(circle at 82% 14%, rgba(122, 181, 226, 0.24), transparent 40%),
+          linear-gradient(145deg, rgba(40, 82, 116, 0.96) 0%, rgba(20, 50, 76, 0.97) 58%, rgba(10, 31, 50, 0.99) 100%);
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+          0 16px 34px rgba(6, 23, 36, 0.36);
+      }
+
+      .about-photo-panel::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 78% 12%, rgba(255, 255, 255, 0.13), transparent 40%),
+          linear-gradient(180deg, rgba(8, 22, 37, 0.04) 0%, rgba(8, 22, 37, 0.22) 100%);
+      }
+
+      .about-photo-panel img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center bottom;
+        display: block;
+        position: relative;
+        z-index: 1;
+        padding: 14px 10px 0;
       }
 
       .timeline-item {
@@ -284,6 +394,8 @@
       }
 
       .chip {
+        position: relative;
+        overflow: hidden;
         padding: 8px 12px;
         border-radius: 999px;
         border: 1px solid rgba(245, 157, 36, 0.5);
@@ -291,6 +403,51 @@
         color: #fff3e0;
         font-weight: 700;
         font-size: 0.95rem;
+        transition:
+          transform 180ms ease,
+          border-color 180ms ease,
+          box-shadow 180ms ease,
+          background-color 180ms ease;
+      }
+
+      .chip::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 18% 20%, rgba(255, 255, 255, 0.22), transparent 54%);
+        opacity: 0;
+        transition: opacity 220ms ease;
+        pointer-events: none;
+      }
+
+      .chip::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -58%;
+        width: 38%;
+        height: 100%;
+        background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.16), transparent);
+        transition: left 380ms ease;
+        pointer-events: none;
+      }
+
+      .chip:hover,
+      .chip:focus-visible {
+        transform: translateY(-2px);
+        border-color: rgba(245, 157, 36, 0.88);
+        background: rgba(245, 157, 36, 0.28);
+        box-shadow: 0 10px 18px rgba(8, 26, 42, 0.34);
+      }
+
+      .chip:hover::before,
+      .chip:focus-visible::before {
+        opacity: 1;
+      }
+
+      .chip:hover::after,
+      .chip:focus-visible::after {
+        left: 126%;
       }
 
       .contact-grid {
@@ -301,72 +458,104 @@
       }
 
       .contact-item {
+        position: relative;
+        overflow: hidden;
+        display: block;
+        text-decoration: none;
+        color: inherit;
         border: 1px solid rgba(255, 255, 255, 0.22);
         border-radius: 14px;
         padding: 16px;
         background: linear-gradient(180deg, rgba(27, 61, 91, 0.88) 0%, rgba(22, 51, 76, 0.9) 100%);
+        transition:
+          transform 220ms ease,
+          border-color 220ms ease,
+          box-shadow 220ms ease;
+        cursor: pointer;
+      }
+
+      .contact-item::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at 12% 16%, rgba(245, 157, 36, 0.24), transparent 44%);
+        opacity: 0;
+        transition: opacity 240ms ease;
+        pointer-events: none;
+      }
+
+      .contact-item::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -62%;
+        width: 42%;
+        height: 100%;
+        background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.14), transparent);
+        transition: left 420ms ease;
+        pointer-events: none;
+      }
+
+      .contact-item:hover,
+      .contact-item:focus-within {
+        transform: translateY(-4px);
+        border-color: rgba(245, 157, 36, 0.55);
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+          0 14px 28px rgba(5, 18, 30, 0.35);
+      }
+
+      .contact-item:hover::before,
+      .contact-item:focus-within::before {
+        opacity: 1;
+      }
+
+      .contact-item:hover::after,
+      .contact-item:focus-within::after {
+        left: 128%;
       }
 
       .contact-item h3 {
+        position: relative;
+        z-index: 1;
         margin: 0;
         color: #ffffff;
         font-size: 1rem;
       }
 
-      .contact-item a {
-        display: inline-block;
+      .contact-link {
+        position: relative;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
         margin-top: 8px;
         color: rgba(255, 255, 255, 0.92);
-        text-decoration: underline;
-        text-underline-offset: 3px;
       }
 
-      .contact-item a:hover {
+      .contact-item:hover .contact-link,
+      .contact-item:focus-within .contact-link {
         color: #ffffff;
       }
 
-      .cta {
-        margin-top: 26px;
-        background: linear-gradient(120deg, #1f486a 0%, #173754 100%);
-        color: var(--white);
-        border-radius: 24px;
-        padding: 28px;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
+      .contact-icon {
+        width: 30px;
+        height: 30px;
+        border-radius: 999px;
+        border: 1px solid rgba(245, 157, 36, 0.56);
+        background: rgba(245, 157, 36, 0.12);
+        display: inline-flex;
         align-items: center;
-        gap: 14px 20px;
-        box-shadow:
-          inset 0 0 0 1px rgba(255, 255, 255, 0.03),
-          0 20px 38px rgba(4, 18, 29, 0.35);
-        width: min(1800px, 90%);
-        margin-left: auto;
-        margin-right: auto;
+        justify-content: center;
+        flex: 0 0 auto;
+        color: #ffd9a5;
       }
 
-      .cta h2 {
-        font-size: 1.9rem;
+      .contact-icon svg {
+        width: 16px;
+        height: 16px;
       }
 
-      .cta p {
-        margin: 10px 0 0;
-        max-width: 690px;
-        line-height: 1.65;
-        color: rgba(255, 255, 255, 0.94);
-      }
-
-      .btn-cta-reverse {
-        text-decoration: none;
-        display: inline-block;
-        background: transparent;
-        color: #ffffff;
-        font-weight: 700;
-        padding: 12px 34px;
-        border-radius: 6px;
-        border: 1px solid rgba(255, 255, 255, 0.85);
-        white-space: nowrap;
-      }
 
       @keyframes rise {
         from {
@@ -389,13 +578,14 @@
           padding-top: 18px;
         }
 
-        .grid {
+        .about-layout {
           grid-template-columns: 1fr;
         }
 
-        .cta {
-          align-items: flex-start;
+        .about-photo-panel {
+          height: 360px;
         }
+
       }
 
       @media (max-width: 760px) {
@@ -415,6 +605,10 @@
           grid-template-columns: 1fr;
         }
 
+        .about-photo-panel {
+          height: 300px;
+        }
+
         .contact-grid {
           grid-template-columns: 1fr;
         }
@@ -429,8 +623,7 @@
           padding: 10px 24px;
         }
 
-        .btn-cta,
-        .btn-cta-reverse {
+        .btn-cta {
           width: 100%;
           text-align: center;
         }
@@ -444,7 +637,7 @@
           <div class="hero-layout">
             <div>
               <div class="brand-row">
-                <img src="assets/logo3.png" alt="taxwisemiami logo" />
+                <img src="assets/logo-by-delia.png" alt="taxwisemiami logo" />
                 <nav aria-label="Main Navigation">
                   <a href="#services">Services</a>
                   <a href="#about">About Me</a>
@@ -490,9 +683,9 @@
       </section>
 
       <section class="section" id="about">
-        <h2>About Me</h2>
-        <div class="grid">
-          <div>
+        <h2>About Me - Delia Cancel</h2>
+        <div class="about-layout">
+          <div class="about-main">
             <p class="lead">
               I am an executive-level accounting and tax professional with 20+ years of experience supporting small and mid-sized businesses in
               highly regulated, cash-intensive industries.
@@ -505,21 +698,24 @@
               Today, I focus on delivering accounting, bookkeeping, and tax support services for business owners who need accurate books,
               cleaner operations, and dependable year-end preparation.
             </p>
-          </div>
-          <aside>
-            <h3>Core Competencies</h3>
-            <div class="chips">
-              <span class="chip">Financial Operations</span>
-              <span class="chip">Internal Controls</span>
-              <span class="chip">Cash Reconciliation</span>
-              <span class="chip">Tax Preparation</span>
-              <span class="chip">Regulatory Readiness</span>
-              <span class="chip">Payroll Coordination</span>
-              <span class="chip">Risk &amp; Compliance</span>
-              <span class="chip">SOP Development</span>
-              <span class="chip">P&amp;L Management</span>
+            <div class="competencies-block">
+              <h3>Core Competencies</h3>
+              <div class="chips">
+                <span class="chip">Financial Operations</span>
+                <span class="chip">Internal Controls</span>
+                <span class="chip">Cash Reconciliation</span>
+                <span class="chip">Tax Preparation</span>
+                <span class="chip">Regulatory Readiness</span>
+                <span class="chip">Payroll Coordination</span>
+                <span class="chip">Risk &amp; Compliance</span>
+                <span class="chip">SOP Development</span>
+                <span class="chip">P&amp;L Management</span>
+              </div>
             </div>
-          </aside>
+          </div>
+          <figure class="about-photo-panel">
+            <img src="assets/delia-clear.png" alt="Delia Cancel" />
+          </figure>
         </div>
         <div class="about-experience" id="experience">
           <h3>Professional Experience Highlights</h3>
@@ -546,41 +742,71 @@
 
       <section class="section" id="contact">
         <h2>Contact</h2>
-        <p class="lead">Reach out anytime. These are placeholder links for now and can be replaced with real contact info later.</p>
+        <p class="lead">Reach out anytime.</p>
         <div class="contact-grid">
-          <article class="contact-item">
+          <a class="contact-item" href="tel:+13052191920">
             <h3>Phone</h3>
-            <a href="tel:+13055550123">+1 (305) 555-0123</a>
-          </article>
-          <article class="contact-item">
+            <span class="contact-link">
+              <span class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M6 3h4l1 4-2 1.4a13 13 0 0 0 6.6 6.6L17 13l4 1v4a2 2 0 0 1-2 2C10.2 20 4 13.8 4 6a2 2 0 0 1 2-2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <span>+1 (305) 219-1920</span>
+            </span>
+          </a>
+          <a class="contact-item" href="mailto:info@taxwisemiami.com">
             <h3>Email</h3>
-            <a href="mailto:info@taxwisemiami.com">info@taxwisemiami.com</a>
-          </article>
-          <article class="contact-item">
+            <span class="contact-link">
+              <span class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <rect x="3.5" y="6" width="17" height="12" rx="2" stroke="currentColor" stroke-width="1.8" />
+                  <path d="m5 8 7 5 7-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <span>info@taxwisemiami.com</span>
+            </span>
+          </a>
+          <a class="contact-item" href="https://facebook.com/taxwisemiami" target="_blank" rel="noopener noreferrer">
             <h3>Facebook</h3>
-            <a href="https://facebook.com/taxwisemiami" target="_blank" rel="noopener noreferrer">facebook.com/taxwisemiami</a>
-          </article>
-          <article class="contact-item">
+            <span class="contact-link">
+              <span class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <path d="M13.3 20v-7h2.3l.4-2.6h-2.7V8.8c0-.8.3-1.4 1.6-1.4H16V5.1c-.2 0-.9-.1-1.9-.1-2 0-3.3 1.2-3.3 3.4v2H8.6V13h2.2v7h2.5Z" fill="currentColor" />
+                </svg>
+              </span>
+              <span>facebook.com/taxwisemiami</span>
+            </span>
+          </a>
+          <a class="contact-item" href="https://instagram.com/taxwisemiami" target="_blank" rel="noopener noreferrer">
             <h3>Instagram</h3>
-            <a href="https://instagram.com/taxwisemiami" target="_blank" rel="noopener noreferrer">instagram.com/taxwisemiami</a>
-          </article>
-          <article class="contact-item">
+            <span class="contact-link">
+              <span class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <rect x="4" y="4" width="16" height="16" rx="4" stroke="currentColor" stroke-width="1.8" />
+                  <circle cx="12" cy="12" r="3.8" stroke="currentColor" stroke-width="1.8" />
+                  <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" />
+                </svg>
+              </span>
+              <span>instagram.com/taxwisemiami</span>
+            </span>
+          </a>
+          <a class="contact-item" href="https://linkedin.com/company/taxwisemiami" target="_blank" rel="noopener noreferrer">
             <h3>LinkedIn</h3>
-            <a href="https://linkedin.com/company/taxwisemiami" target="_blank" rel="noopener noreferrer">linkedin.com/company/taxwisemiami</a>
-          </article>
+            <span class="contact-link">
+              <span class="contact-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none">
+                  <rect x="4" y="9" width="3" height="11" fill="currentColor" />
+                  <circle cx="5.5" cy="5.8" r="1.6" fill="currentColor" />
+                  <path d="M10 20V9h3v1.7c.6-1 1.8-2 3.8-2 3.1 0 4.2 2 4.2 5V20h-3v-5.4c0-1.8-.6-3.1-2.3-3.1-1.4 0-2.2.9-2.6 1.9-.1.3-.1.7-.1 1V20h-3Z" fill="currentColor" />
+                </svg>
+              </span>
+              <span>linkedin.com/company/taxwisemiami</span>
+            </span>
+          </a>
         </div>
       </section>
 
-      <section class="cta">
-        <div>
-          <h2>taxwisemiami</h2>
-          <p>
-            Professional accounting, bookkeeping, tax preparation readiness, and business solutions for small and medium-sized businesses.
-            Led by Delia Cancel.
-          </p>
-        </div>
-        <a class="btn-cta-reverse" href="#about">About Delia</a>
-      </section>
     </main>
   </body>
 </html>
