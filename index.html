@@ -75,39 +75,128 @@
         z-index: 1;
       }
 
-      .brand-row {
+      section[id] {
+        scroll-margin-top: 86px;
+      }
+
+      .topbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 90;
+        padding: 0;
+        opacity: 0;
+        transform: translateY(-115%);
+        pointer-events: none;
+        transition:
+          opacity 260ms ease,
+          transform 260ms ease,
+          padding 260ms ease;
+      }
+
+      .topbar-inner {
+        width: 100%;
+        position: relative;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 20px;
-        flex-wrap: wrap;
+        gap: 14px;
+        padding: 10px clamp(14px, 4vw, 60px);
+        border: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+        background: rgba(7, 22, 37, 0.78);
+        backdrop-filter: blur(9px);
+        box-shadow: 0 10px 22px rgba(4, 18, 29, 0.32);
+      }
+
+      .topbar-inner::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(120deg, rgba(255, 255, 255, 0.14), transparent 46%);
+        pointer-events: none;
+        opacity: 0.45;
+      }
+
+      .brand-row {
+        position: static;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 14px;
+        flex-wrap: nowrap;
         padding-top: 22px;
       }
 
-      .brand-row img {
-        max-width: 360px;
+      .brand-logo {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        flex: 0 0 auto;
+      }
+
+      .brand-logo img {
+        max-width: min(30vw, 280px);
         width: 100%;
         height: auto;
+        display: block;
+        transition: max-width 260ms ease;
+      }
+
+      .topbar .brand-logo img {
+        max-width: min(24vw, 210px);
       }
 
       nav {
         display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
+        gap: 14px;
+        flex-wrap: nowrap;
+        align-items: center;
+        margin-left: auto;
       }
 
       nav a {
         text-decoration: none;
         color: rgba(255, 255, 255, 0.95);
         font-weight: 600;
-        font-size: 1.08rem;
+        font-size: clamp(0.78rem, 1.05vw, 1rem);
         letter-spacing: 0.01em;
         border-bottom: 2px solid transparent;
+        white-space: nowrap;
       }
 
       nav a:hover {
         border-color: var(--accent);
         color: #ffffff;
+      }
+
+      .nav-contact {
+        border: 1px solid rgba(255, 255, 255, 0.82);
+        border-bottom-color: rgba(255, 255, 255, 0.82);
+        padding: 10px 24px;
+      }
+
+      .nav-contact:hover {
+        border-color: #ffffff;
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .header-folded .topbar {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+      }
+
+      .header-folded .topbar-inner {
+        border-bottom-color: rgba(255, 255, 255, 0.36);
+        background: rgba(7, 22, 37, 0.9);
+        box-shadow:
+          0 12px 28px rgba(3, 14, 24, 0.46);
+      }
+
+      .header-folded .topbar .brand-logo img {
+        max-width: min(22vw, 180px);
       }
 
       h1,
@@ -117,7 +206,7 @@
       }
 
       .hero h1 {
-        margin-top: clamp(48px, 12vh, 150px);
+        margin-top: clamp(120px, 16vh, 190px);
         font-size: clamp(2.4rem, 6vw, 5.2rem);
         line-height: 1.02;
         letter-spacing: -0.02em;
@@ -172,18 +261,6 @@
 
       .name-tag {
         display: none;
-      }
-
-      .btn-contact {
-        text-decoration: none;
-        display: inline-block;
-        color: #ffffff;
-        padding: 12px 34px;
-        border: 1px solid rgba(255, 255, 255, 0.82);
-        font-weight: 600;
-        font-size: 1.05rem;
-        min-width: 190px;
-        text-align: center;
       }
 
       .section {
@@ -556,6 +633,39 @@
         height: 16px;
       }
 
+      body.reveal-ready .reveal-on-scroll {
+        opacity: 0;
+        transform: translateY(24px);
+        filter: saturate(0.9) brightness(0.96);
+        transition:
+          opacity 620ms cubic-bezier(0.22, 1, 0.36, 1),
+          transform 620ms cubic-bezier(0.22, 1, 0.36, 1),
+          filter 620ms ease;
+        transition-delay: var(--reveal-delay, 0ms);
+      }
+
+      body.reveal-ready .reveal-on-scroll.in-view {
+        opacity: 1;
+        transform: translateY(0);
+        filter: none;
+      }
+
+      body.reveal-ready .reveal-on-scroll.reveal-highlight.in-view {
+        animation: reveal-pulse 760ms ease-out;
+      }
+
+      @keyframes reveal-pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(245, 157, 36, 0);
+        }
+        45% {
+          box-shadow: 0 0 0 4px rgba(245, 157, 36, 0.2);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(245, 157, 36, 0);
+        }
+      }
+
 
       @keyframes rise {
         from {
@@ -574,8 +684,22 @@
           padding-bottom: 36px;
         }
 
+        .topbar-inner {
+          width: 100%;
+          padding: 8px 12px;
+        }
+
         .brand-row {
           padding-top: 18px;
+          gap: 8px;
+        }
+
+        .brand-logo img {
+          max-width: min(40vw, 210px);
+        }
+
+        .topbar .brand-logo img {
+          max-width: min(30vw, 170px);
         }
 
         .about-layout {
@@ -614,13 +738,17 @@
         }
 
         nav {
-          gap: 10px 14px;
-          font-size: 0.98rem;
+          width: auto;
+          justify-content: center;
+          gap: 7px;
         }
 
-        .btn-contact {
-          min-width: 160px;
-          padding: 10px 24px;
+        nav a {
+          font-size: clamp(0.64rem, 2.3vw, 0.8rem);
+        }
+
+        .nav-contact {
+          padding: 4px 8px;
         }
 
         .btn-cta {
@@ -628,23 +756,45 @@
           text-align: center;
         }
       }
+
+      @media (prefers-reduced-motion: reduce) {
+        body.reveal-ready .reveal-on-scroll {
+          opacity: 1;
+          transform: none;
+          filter: none;
+          transition: none;
+          animation: none;
+        }
+      }
     </style>
   </head>
   <body>
+    <header class="topbar" aria-label="Sticky Top Bar">
+      <div class="topbar-inner">
+        <a class="brand-logo" href="#home" aria-label="Scroll to top">
+          <img src="assets/logo-by-delia.png" alt="taxwisemiami logo" />
+        </a>
+        <nav aria-label="Top Bar Navigation">
+          <a href="#services">Services</a>
+          <a href="#about">About Me</a>
+          <a class="nav-contact" href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
     <main class="page">
       <section class="hero" id="home">
         <div class="hero-inner">
           <div class="hero-layout">
             <div>
               <div class="brand-row">
-                <img src="assets/logo-by-delia.png" alt="taxwisemiami logo" />
+                <a class="brand-logo" href="#home" aria-label="Scroll to top">
+                  <img src="assets/logo-by-delia.png" alt="taxwisemiami logo" />
+                </a>
                 <nav aria-label="Main Navigation">
                   <a href="#services">Services</a>
                   <a href="#about">About Me</a>
-                  <a href="#experience">Experience</a>
-                
+                  <a class="nav-contact" href="#contact">Contact</a>
                 </nav>
-                <a class="btn-contact" href="#contact">Contact</a>
               </div>
               <h1>Leave the bureaucracy and accounting to us.</h1>
               <p class="hero-copy">
@@ -808,5 +958,27 @@
       </section>
 
     </main>
+    <script>
+      (() => {
+        const foldThreshold = 64;
+        const root = document.body;
+        const logos = document.querySelectorAll(".brand-logo");
+
+        const setFoldState = () => {
+          root.classList.toggle("header-folded", window.scrollY > foldThreshold);
+        };
+
+        setFoldState();
+        window.addEventListener("scroll", setFoldState, { passive: true });
+
+        logos.forEach((logo) => {
+          logo.addEventListener("click", (event) => {
+            event.preventDefault();
+            const behavior = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
+            window.scrollTo({ top: 0, behavior });
+          });
+        });
+      })();
+    </script>
   </body>
 </html>
