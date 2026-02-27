@@ -288,7 +288,7 @@
         border-radius: 999px;
         object-fit: cover;
         flex: 0 0 auto;
-        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.28);
+        box-shadow: none;
       }
 
       .lang-switch-label {
@@ -320,7 +320,6 @@
       .lang-switch-nav .lang-switch-flag {
         width: 20px;
         height: 20px;
-        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18);
       }
 
       .hero nav {
@@ -401,8 +400,8 @@
       }
 
       .hero h1 {
-        margin: clamp(120px, 16vh, 190px) auto 0;
-        font-size: clamp(2.4rem, 6vw, 5.2rem);
+        margin-top: 14vh;
+        font-size: 10vw;
         line-height: 1.02;
         letter-spacing: -0.02em;
         max-width: 980px;
@@ -1048,7 +1047,17 @@
           margin: 0 0 45px;
         }
 
-        .topbar-inner {
+      .hero-copy {
+          margin: 44px auto 0;
+          max-width: 980px;
+          color: rgba(237, 243, 248, 0.94);
+          font-size: 3.5vw;
+          line-height: 1.62;
+          text-align: center;
+      }
+
+
+          .topbar-inner {
           flex-wrap: nowrap;
           justify-content: space-between;
           align-items: center;
@@ -1076,7 +1085,7 @@
         }
 
         .hero h1 {
-          font-size: clamp(2rem, 12vw, 3.1rem);
+          font-size: 10vw;
         }
 
         .cards {
@@ -1206,7 +1215,7 @@
         .hero nav {
           width: 100%;
           justify-content: center;
-          gap: 16px;
+          gap: 4vh;
           flex-wrap: wrap;
           row-gap: 14px;
         }
@@ -1280,7 +1289,7 @@
               </div>
               <h1 data-i18n="hero_title">Leave the bureaucracy and accounting to us.</h1>
               <p class="hero-copy" data-i18n="hero_copy">
-                taxwisemiami supports small and medium-sized businesses with monthly bookkeeping, tax preparation readiness, cleanup work, and
+                Taxwisemiami supports small and medium-sized businesses with monthly bookkeeping, tax preparation readiness, cleanup work, and
                 operational consulting tailored to your business reality.
               </p>
               <div class="hero-actions">
@@ -1468,7 +1477,7 @@
             nav_contact: "Contact",
             hero_title: "Leave the bureaucracy and accounting to us.",
             hero_copy:
-              "taxwisemiami supports small and medium-sized businesses with monthly bookkeeping, tax preparation readiness, cleanup work, and operational consulting tailored to your business reality.",
+              "TaxWiseMiami supports small and medium-sized businesses with monthly bookkeeping, tax preparation readiness, cleanup work, and operational consulting tailored to your business reality.",
             hero_cta: "Book a Consultation",
             services_title: "Services",
             services_lead: "Simple, dependable financial support designed for business owners who want cleaner books and better decisions.",
@@ -1528,7 +1537,7 @@
             nav_contact: "Contacto",
             hero_title: "Deje la burocracia y la contabilidad en nuestras manos.",
             hero_copy:
-              "taxwisemiami apoya a pequeñas y medianas empresas con contabilidad mensual, preparación para impuestos, limpieza y actualización contable, y consultoría operativa adaptada a la realidad de su negocio.",
+              "TaxWiseMiami apoya a pequeñas y medianas empresas con contabilidad mensual, preparación para impuestos, limpieza y actualización contable, y consultoría operativa adaptada a la realidad de su negocio.",
             hero_cta: "Agende una consulta",
             services_title: "Servicios",
             services_lead: "Apoyo financiero simple y confiable, diseñado para empresarios que desean libros más ordenados y mejores decisiones.",
@@ -1597,7 +1606,7 @@
         const updateLanguageToggle = (language) => {
           const nextLanguage =
             language === "es"
-              ? { code: "en", fullLabel: "English Version", shortLabel: "English", flag: "assets/english.png" }
+              ? { code: "en", fullLabel: "English Version", shortLabel: "English", flag: "assets/usa.png" }
               : { code: "es", fullLabel: "Version en Espanol", shortLabel: "Espanol", flag: "assets/spanish.png" };
 
           languageToggleButtons.forEach((button) => {
