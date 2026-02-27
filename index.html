@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#15354c" />
-    <title>taxwisemiami | Accounting, Tax &amp; Business Solutions</title>
+    <title data-i18n="meta_title">taxwisemiami | Accounting, Tax &amp; Business Solutions</title>
     <script>
       if ("scrollRestoration" in history) {
         history.scrollRestoration = "manual";
@@ -149,6 +149,12 @@
         opacity: 0.45;
       }
 
+      .topbar .brand-logo,
+      .topbar-controls {
+        position: relative;
+        z-index: 1;
+      }
+
       .brand-row {
         position: static;
         display: flex;
@@ -184,6 +190,17 @@
         flex-wrap: nowrap;
         align-items: center;
         margin-left: auto;
+      }
+
+      .topbar-controls {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-left: auto;
+      }
+
+      .topbar-controls nav {
+        margin-left: 0;
       }
 
       nav a {
@@ -226,6 +243,138 @@
         border-color: transparent;
         background: linear-gradient(135deg, var(--accent-cream) 0%, var(--accent) 52%, var(--accent-coral) 100%);
         filter: saturate(1.06) brightness(1.02);
+      }
+
+      .lang-switch {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 12px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 999px;
+        background: rgba(8, 26, 42, 0.38);
+        color: #ffffff;
+        font: inherit;
+        font-size: 0.86rem;
+        font-weight: 700;
+        line-height: 1;
+        cursor: pointer;
+        white-space: nowrap;
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+        transition:
+          transform 180ms ease,
+          border-color 180ms ease,
+          background-color 180ms ease,
+          box-shadow 180ms ease;
+      }
+
+      .lang-switch:hover {
+        transform: translateY(-1px);
+        border-color: rgba(243, 215, 170, 0.54);
+        background: rgba(8, 26, 42, 0.54);
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+          0 10px 20px rgba(5, 18, 30, 0.24);
+      }
+
+      .lang-switch:focus-visible {
+        outline: 2px solid rgba(243, 215, 170, 0.9);
+        outline-offset: 2px;
+      }
+
+      .lang-switch-flag {
+        width: 22px;
+        height: 22px;
+        border-radius: 999px;
+        object-fit: cover;
+        flex: 0 0 auto;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.28);
+      }
+
+      .lang-switch-label {
+        display: inline-block;
+      }
+
+      .lang-switch-label-short {
+        display: none;
+      }
+
+      .lang-switch-nav {
+        padding: 0;
+        border: 0;
+        border-bottom: 2px solid transparent;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+        color: rgba(255, 255, 255, 0.95);
+        font-size: clamp(0.78rem, 1.05vw, 1rem);
+      }
+
+      .lang-switch-nav:hover {
+        transform: none;
+        border-color: var(--accent);
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .lang-switch-nav .lang-switch-flag {
+        width: 20px;
+        height: 20px;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18);
+      }
+
+      .hero nav {
+        gap: 24px;
+      }
+
+      .hero nav a {
+        font-size: clamp(0.96rem, 1.25vw, 1.16rem);
+      }
+
+      .hero .nav-contact {
+        border: 0;
+        border-bottom: 2px solid transparent;
+        background: transparent;
+        padding: 0;
+      }
+
+      .hero .nav-contact:hover {
+        border-color: var(--accent);
+        background: transparent;
+      }
+
+      .hero .lang-switch-nav {
+        padding: 10px 18px;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+        border-radius: 999px;
+        background: rgba(8, 26, 42, 0.34);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+        font-size: clamp(0.94rem, 1.2vw, 1.12rem);
+      }
+
+      .hero .lang-switch-nav:hover {
+        border-color: rgba(243, 215, 170, 0.54);
+        background: rgba(8, 26, 42, 0.5);
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+          0 10px 20px rgba(5, 18, 30, 0.18);
+      }
+
+      .topbar .lang-switch {
+        justify-content: center;
+        width: 42px;
+        min-width: 42px;
+        padding: 8px;
+      }
+
+      .topbar .lang-switch .lang-switch-label {
+        display: none;
+      }
+
+      .topbar .lang-switch .lang-switch-flag {
+        width: 20px;
+        height: 20px;
       }
 
       .header-folded .topbar {
@@ -875,6 +1024,15 @@
           max-width: min(30vw, 170px);
         }
 
+        .topbar-controls {
+          gap: 10px;
+        }
+
+        .lang-switch {
+          padding: 7px 10px;
+          font-size: 0.8rem;
+        }
+
         .about-layout {
           grid-template-columns: 1fr;
         }
@@ -888,6 +1046,29 @@
       @media (max-width: 760px) {
         .page {
           margin: 0 0 45px;
+        }
+
+        .topbar-inner {
+          flex-wrap: nowrap;
+          justify-content: space-between;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .topbar-controls {
+          width: auto;
+          flex-direction: row;
+          justify-content: flex-end;
+          margin-left: auto;
+          gap: 12px;
+        }
+
+        .topbar .brand-logo {
+          flex: 0 0 auto;
+        }
+
+        .topbar .brand-logo img {
+          max-width: min(28vw, 128px);
         }
 
         .section {
@@ -942,12 +1123,62 @@
           gap: 7px;
         }
 
+        .topbar nav {
+          gap: 10px;
+        }
+
         .topbar nav a {
-          font-size: clamp(0.64rem, 2.3vw, 0.8rem);
+          font-size: clamp(0.76rem, 2.8vw, 0.92rem);
         }
 
         .topbar .nav-contact {
-          padding: 4px 8px;
+          padding: 5px 8px;
+        }
+
+        .lang-switch {
+          justify-content: center;
+          width: min(100%, 220px);
+          padding: 8px 12px;
+          font-size: 0.78rem;
+        }
+
+        .hero .lang-switch-nav {
+          order: 4;
+          flex: 0 0 100%;
+          width: min(100%, 320px);
+          justify-content: center;
+          gap: 8px;
+          margin: 8px auto 0;
+          padding: 11px 18px;
+          border: 1px solid rgba(255, 255, 255, 0.22);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.22);
+          border-radius: 999px;
+          background: rgba(8, 26, 42, 0.42);
+          box-shadow:
+            inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+            0 10px 20px rgba(5, 18, 30, 0.18);
+          font-size: clamp(0.96rem, 3.8vw, 1.08rem);
+        }
+
+        .hero .lang-switch-nav:hover {
+          border-color: rgba(243, 215, 170, 0.54);
+          background: rgba(8, 26, 42, 0.54);
+          box-shadow:
+            inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+            0 12px 22px rgba(5, 18, 30, 0.22);
+        }
+
+        .hero .lang-switch-nav .lang-switch-flag {
+          width: 22px;
+          height: 22px;
+        }
+
+        .hero .lang-switch-nav .lang-switch-label-full {
+          display: inline-block;
+        }
+
+        .hero .lang-switch-nav .lang-switch-label-short {
+          display: none;
         }
 
         .btn-cta {
@@ -958,7 +1189,7 @@
         .hero .brand-row {
           flex-direction: column;
           align-items: center;
-          gap: 10px;
+          gap: 20px;
           padding-top: 18px;
         }
 
@@ -975,16 +1206,20 @@
         .hero nav {
           width: 100%;
           justify-content: center;
-          gap: 8px;
-          flex-wrap: nowrap;
+          gap: 16px;
+          flex-wrap: wrap;
+          row-gap: 14px;
         }
 
         .hero nav a {
-          font-size: clamp(0.94rem, 3.8vw, 1.16rem);
+          font-size: clamp(1rem, 4vw, 1.14rem);
         }
 
         .hero .nav-contact {
-          padding: 9px 14px;
+          border: 0;
+          border-bottom: 2px solid transparent;
+          background: transparent;
+          padding: 0;
         }
       }
 
@@ -1004,16 +1239,23 @@
     </style>
   </head>
   <body>
-    <header class="topbar" aria-label="Sticky Top Bar">
+    <header class="topbar" aria-label="Sticky Top Bar" data-i18n="topbar_header_label" data-i18n-attr="aria-label">
       <div class="topbar-inner">
-        <a class="brand-logo" href="#home" aria-label="Scroll to top">
-          <img src="assets/logo-by-delia.png" alt="taxwisemiami logo" />
+        <a class="brand-logo" href="#home" aria-label="Scroll to top" data-i18n="scroll_to_top_label" data-i18n-attr="aria-label">
+          <img src="assets/logo-by-delia.png" alt="taxwisemiami logo" data-i18n="logo_alt" data-i18n-attr="alt" />
         </a>
-        <nav aria-label="Top Bar Navigation">
-          <a href="#services">Services</a>
-          <a href="#about">About Me</a>
-          <a class="nav-contact" href="#contact">Contact</a>
-        </nav>
+        <div class="topbar-controls">
+          <nav aria-label="Top Bar Navigation" data-i18n="topbar_nav_label" data-i18n-attr="aria-label">
+            <a href="#services" data-i18n="nav_services">Services</a>
+            <a href="#about" data-i18n="nav_about">About Me</a>
+            <a class="nav-contact" href="#contact" data-i18n="nav_contact">Contact</a>
+          </nav>
+          <button class="lang-switch" type="button" data-language-toggle aria-label="Versión en Español">
+            <img class="lang-switch-flag" src="assets/spanish.png" alt="" />
+            <span class="lang-switch-label lang-switch-label-full" data-lang-label="full">Versión en Español</span>
+            <span class="lang-switch-label lang-switch-label-short" data-lang-label="short">Español</span>
+          </button>
+        </div>
       </div>
     </header>
     <main class="page">
@@ -1022,22 +1264,27 @@
           <div class="hero-layout">
             <div>
               <div class="brand-row">
-                <a class="brand-logo" href="#home" aria-label="Scroll to top">
-                  <img src="assets/logo-by-delia.png" alt="taxwisemiami logo" />
+                <a class="brand-logo" href="#home" aria-label="Scroll to top" data-i18n="scroll_to_top_label" data-i18n-attr="aria-label">
+                  <img src="assets/logo-by-delia.png" alt="taxwisemiami logo" data-i18n="logo_alt" data-i18n-attr="alt" />
                 </a>
-                <nav aria-label="Main Navigation">
-                  <a href="#services">Services</a>
-                  <a href="#about">About Me</a>
-                  <a class="nav-contact" href="#contact">Contact</a>
+                <nav aria-label="Main Navigation" data-i18n="main_nav_label" data-i18n-attr="aria-label">
+                  <button class="lang-switch lang-switch-nav" type="button" data-language-toggle aria-label="Versión en Español">
+                    <img class="lang-switch-flag" src="assets/spanish.png" alt="" />
+                    <span class="lang-switch-label lang-switch-label-full" data-lang-label="full">Versión en Español</span>
+                    <span class="lang-switch-label lang-switch-label-short" data-lang-label="short">Español</span>
+                  </button>
+                  <a href="#services" data-i18n="nav_services">Services</a>
+                  <a href="#about" data-i18n="nav_about">About Me</a>
+                  <a class="nav-contact" href="#contact" data-i18n="nav_contact">Contact</a>
                 </nav>
               </div>
-              <h1>Leave the bureaucracy and accounting to us.</h1>
-              <p class="hero-copy">
+              <h1 data-i18n="hero_title">Leave the bureaucracy and accounting to us.</h1>
+              <p class="hero-copy" data-i18n="hero_copy">
                 taxwisemiami supports small and medium-sized businesses with monthly bookkeeping, tax preparation readiness, cleanup work, and
                 operational consulting tailored to your business reality.
               </p>
               <div class="hero-actions">
-                <a class="btn-cta" href="#contact">Book a Consultation</a>
+                <a class="btn-cta" href="#contact" data-i18n="hero_cta">Book a Consultation</a>
               </div>
             </div>
           </div>
@@ -1045,57 +1292,57 @@
       </section>
 
       <section class="section" id="services">
-        <h2>Services</h2>
-        <p class="lead">Simple, dependable financial support designed for business owners who want cleaner books and better decisions.</p>
+        <h2 data-i18n="services_title">Services</h2>
+        <p class="lead" data-i18n="services_lead">Simple, dependable financial support designed for business owners who want cleaner books and better decisions.</p>
         <div class="cards">
           <article class="card">
-            <h3>Bookkeeping &amp; Monthly Accounting</h3>
-            <p>Full-cycle bookkeeping, reconciliations, month-end close support, and ongoing reporting for multi-unit or single-site operations.</p>
+            <h3 data-i18n="service_1_title">Bookkeeping &amp; Monthly Accounting</h3>
+            <p data-i18n="service_1_desc">Full-cycle bookkeeping, reconciliations, month-end close support, and ongoing reporting for multi-unit or single-site operations.</p>
           </article>
           <article class="card">
-            <h3>Tax Preparation Readiness</h3>
-            <p>Organized year-end files, clean documentation, and financial statement support to make tax filing smoother and more accurate.</p>
+            <h3 data-i18n="service_2_title">Tax Preparation Readiness</h3>
+            <p data-i18n="service_2_desc">Organized year-end files, clean documentation, and financial statement support to make tax filing smoother and more accurate.</p>
           </article>
           <article class="card">
-            <h3>Cleanup &amp; Catch-Up Work</h3>
-            <p>Backlog correction, account cleanup, and process fixes to stabilize your books and restore confidence in your numbers.</p>
+            <h3 data-i18n="service_3_title">Cleanup &amp; Catch-Up Work</h3>
+            <p data-i18n="service_3_desc">Backlog correction, account cleanup, and process fixes to stabilize your books and restore confidence in your numbers.</p>
           </article>
           <article class="card">
-            <h3>Business Operations Consulting</h3>
-            <p>Hands-on guidance for internal controls, cash management, SOPs, and practical operating improvements that protect margin.</p>
+            <h3 data-i18n="service_4_title">Business Operations Consulting</h3>
+            <p data-i18n="service_4_desc">Hands-on guidance for internal controls, cash management, SOPs, and practical operating improvements that protect margin.</p>
           </article>
         </div>
       </section>
 
       <section class="section" id="about">
-        <h2>About Me - Delia Cancel</h2>
+        <h2 data-i18n="about_title">About Me - Delia Cancel</h2>
         <div class="about-layout">
           <div class="about-main">
-            <p class="lead">
+            <p class="lead" data-i18n="about_p1">
               I am an executive-level accounting and tax professional with 20+ years of experience supporting small and mid-sized businesses in
               highly regulated, cash-intensive industries.
             </p>
-            <p class="lead">
+            <p class="lead" data-i18n="about_p2">
               As a former Company President and Founder, I personally managed bookkeeping, financial controls, cash management, payroll
               coordination, and entity-level tax compliance for multiple operating companies.
             </p>
-            <p class="lead">
+            <p class="lead" data-i18n="about_p3">
               Today, I focus on delivering accounting, bookkeeping, tax support, and business consulting services for business owners who need
               accurate books, cleaner operations, and dependable year-end preparation.
             </p>
             <div class="competencies-block">
-              <h3>Core Competencies</h3>
+              <h3 data-i18n="competencies_title">Core Competencies</h3>
               <div class="chips">
-                <span class="chip">Financial Operations</span>
-                <span class="chip">Business Consulting</span>
-                <span class="chip">Internal Controls</span>
-                <span class="chip">Cash Reconciliation</span>
-                <span class="chip">Tax Preparation</span>
-                <span class="chip">Regulatory Readiness</span>
-                <span class="chip">Payroll Coordination</span>
-                <span class="chip">Risk &amp; Compliance</span>
-                <span class="chip">SOP Development</span>
-                <span class="chip">P&amp;L Management</span>
+                <span class="chip" data-i18n="competency_1">Financial Operations</span>
+                <span class="chip" data-i18n="competency_2">Business Consulting</span>
+                <span class="chip" data-i18n="competency_3">Internal Controls</span>
+                <span class="chip" data-i18n="competency_4">Cash Reconciliation</span>
+                <span class="chip" data-i18n="competency_5">Tax Preparation</span>
+                <span class="chip" data-i18n="competency_6">Regulatory Readiness</span>
+                <span class="chip" data-i18n="competency_7">Payroll Coordination</span>
+                <span class="chip" data-i18n="competency_8">Risk &amp; Compliance</span>
+                <span class="chip" data-i18n="competency_9">SOP Development</span>
+                <span class="chip" data-i18n="competency_10">P&amp;L Management</span>
               </div>
             </div>
           </div>
@@ -1104,34 +1351,34 @@
           </figure>
         </div>
         <div class="about-experience" id="experience">
-          <h3>Professional Experience Highlights</h3>
+          <h3 data-i18n="experience_title">Professional Experience Highlights</h3>
           <article class="timeline-item">
-            <h3>PAYDAY SOLUTIONS | Founder / President (2009-2026)</h3>
-            <p>
+            <h3 data-i18n="experience_1_title">PAYDAY SOLUTIONS | Founder / President (2009-2026)</h3>
+            <p data-i18n="experience_1_desc">
               Built and operated a multi-location financial services company across South Florida, owning full-cycle bookkeeping,
               reconciliation, payroll coordination, financial reporting, and tax compliance support.
             </p>
           </article>
           <article class="timeline-item">
-            <h3>CAR DOME INC. SOLUTIONS | President (2002-2008) | Comptroller (1998-2002)</h3>
-            <p>
+            <h3 data-i18n="experience_2_title">CAR DOME INC. SOLUTIONS | President (2002-2008) | Comptroller (1998-2002)</h3>
+            <p data-i18n="experience_2_desc">
               Led financial and operational performance across multi-state locations, strengthened accounting procedures, improved reporting
               consistency, and supported tax preparation and internal control systems.
             </p>
           </article>
           <article class="timeline-item">
-            <h3>Systems</h3>
-            <p>ProSeries, QuickBooks, and CheckPro.</p>
+            <h3 data-i18n="experience_3_title">Systems</h3>
+            <p data-i18n="experience_3_desc">ProSeries, QuickBooks, and CheckPro.</p>
           </article>
         </div>
       </section>
 
       <section class="section" id="contact">
-        <h2>Contact</h2>
-        <p class="lead">Reach out anytime.</p>
+        <h2 data-i18n="contact_title">Contact</h2>
+        <p class="lead" data-i18n="contact_lead">Reach out anytime.</p>
         <div class="contact-grid">
           <a class="contact-item" href="tel:+13052191920">
-            <h3>Phone</h3>
+            <h3 data-i18n="contact_phone">Phone</h3>
             <span class="contact-link">
               <span class="contact-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none">
@@ -1142,7 +1389,7 @@
             </span>
           </a>
           <a class="contact-item" href="mailto:info@taxwisemiami.com">
-            <h3>Email</h3>
+            <h3 data-i18n="contact_email">Email</h3>
             <span class="contact-link">
               <span class="contact-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none">
@@ -1198,13 +1445,209 @@
       (() => {
         const foldEnterThreshold = 72;
         const foldExitThreshold = 34;
+        const languageStorageKey = "taxwisemiami-language";
         const root = document.body;
         const logos = document.querySelectorAll(".brand-logo");
+        const i18nElements = document.querySelectorAll("[data-i18n]");
+        const languageToggleButtons = document.querySelectorAll("[data-language-toggle]");
         const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
         const navEntry = performance.getEntriesByType("navigation")[0];
         const isReload = navEntry ? navEntry.type === "reload" : performance.navigation && performance.navigation.type === 1;
         let isFolded = window.scrollY > foldEnterThreshold;
         let isTicking = false;
+        const translations = {
+          en: {
+            meta_title: "taxwisemiami | Accounting, Tax & Business Solutions",
+            topbar_header_label: "Sticky Top Bar",
+            scroll_to_top_label: "Scroll to top",
+            logo_alt: "taxwisemiami logo",
+            topbar_nav_label: "Top Bar Navigation",
+            main_nav_label: "Main Navigation",
+            nav_services: "Services",
+            nav_about: "About Me",
+            nav_contact: "Contact",
+            hero_title: "Leave the bureaucracy and accounting to us.",
+            hero_copy:
+              "taxwisemiami supports small and medium-sized businesses with monthly bookkeeping, tax preparation readiness, cleanup work, and operational consulting tailored to your business reality.",
+            hero_cta: "Book a Consultation",
+            services_title: "Services",
+            services_lead: "Simple, dependable financial support designed for business owners who want cleaner books and better decisions.",
+            service_1_title: "Bookkeeping & Monthly Accounting",
+            service_1_desc:
+              "Full-cycle bookkeeping, reconciliations, month-end close support, and ongoing reporting for multi-unit or single-site operations.",
+            service_2_title: "Tax Preparation Readiness",
+            service_2_desc:
+              "Organized year-end files, clean documentation, and financial statement support to make tax filing smoother and more accurate.",
+            service_3_title: "Cleanup & Catch-Up Work",
+            service_3_desc:
+              "Backlog correction, account cleanup, and process fixes to stabilize your books and restore confidence in your numbers.",
+            service_4_title: "Business Operations Consulting",
+            service_4_desc:
+              "Hands-on guidance for internal controls, cash management, SOPs, and practical operating improvements that protect margin.",
+            about_title: "About Me - Delia Cancel",
+            about_p1:
+              "I am an executive-level accounting and tax professional with 20+ years of experience supporting small and mid-sized businesses in highly regulated, cash-intensive industries.",
+            about_p2:
+              "As a former Company President and Founder, I personally managed bookkeeping, financial controls, cash management, payroll coordination, and entity-level tax compliance for multiple operating companies.",
+            about_p3:
+              "Today, I focus on delivering accounting, bookkeeping, tax support, and business consulting services for business owners who need accurate books, cleaner operations, and dependable year-end preparation.",
+            competencies_title: "Core Competencies",
+            competency_1: "Financial Operations",
+            competency_2: "Business Consulting",
+            competency_3: "Internal Controls",
+            competency_4: "Cash Reconciliation",
+            competency_5: "Tax Preparation",
+            competency_6: "Regulatory Readiness",
+            competency_7: "Payroll Coordination",
+            competency_8: "Risk & Compliance",
+            competency_9: "SOP Development",
+            competency_10: "P&L Management",
+            experience_title: "Professional Experience Highlights",
+            experience_1_title: "PAYDAY SOLUTIONS | Founder / President (2009-2026)",
+            experience_1_desc:
+              "Built and operated a multi-location financial services company across South Florida, owning full-cycle bookkeeping, reconciliation, payroll coordination, financial reporting, and tax compliance support.",
+            experience_2_title: "CAR DOME INC. SOLUTIONS | President (2002-2008) | Comptroller (1998-2002)",
+            experience_2_desc:
+              "Led financial and operational performance across multi-state locations, strengthened accounting procedures, improved reporting consistency, and supported tax preparation and internal control systems.",
+            experience_3_title: "Systems",
+            experience_3_desc: "ProSeries, QuickBooks, and CheckPro.",
+            contact_title: "Contact",
+            contact_lead: "Reach out anytime.",
+            contact_phone: "Phone",
+            contact_email: "Email",
+          },
+          es: {
+            meta_title: "taxwisemiami | Soluciones Contables, Fiscales y Empresariales",
+            topbar_header_label: "Barra superior fija",
+            scroll_to_top_label: "Volver arriba",
+            logo_alt: "logotipo de taxwisemiami",
+            topbar_nav_label: "Navegación de barra superior",
+            main_nav_label: "Navegación principal",
+            nav_services: "Servicios",
+            nav_about: "Sobre mí",
+            nav_contact: "Contacto",
+            hero_title: "Deje la burocracia y la contabilidad en nuestras manos.",
+            hero_copy:
+              "taxwisemiami apoya a pequeñas y medianas empresas con contabilidad mensual, preparación para impuestos, limpieza y actualización contable, y consultoría operativa adaptada a la realidad de su negocio.",
+            hero_cta: "Agende una consulta",
+            services_title: "Servicios",
+            services_lead: "Apoyo financiero simple y confiable, diseñado para empresarios que desean libros más ordenados y mejores decisiones.",
+            service_1_title: "Contabilidad y Registros Mensuales",
+            service_1_desc:
+              "Contabilidad completa, conciliaciones, apoyo en cierres mensuales e informes continuos para operaciones de una o varias ubicaciones.",
+            service_2_title: "Preparación para Declaraciones de Impuestos",
+            service_2_desc:
+              "Archivos de cierre de año organizados, documentación limpia y apoyo con estados financieros para que la declaración de impuestos sea más fluida y precisa.",
+            service_3_title: "Limpieza y Puesta al Día Contable",
+            service_3_desc:
+              "Corrección de atrasos, limpieza de cuentas y mejoras de procesos para estabilizar sus libros y recuperar la confianza en sus números.",
+            service_4_title: "Consultoría de Operaciones Empresariales",
+            service_4_desc:
+              "Asesoría práctica sobre controles internos, manejo de efectivo, SOP y mejoras operativas que protegen el margen.",
+            about_title: "Sobre mí - Delia Cancel",
+            about_p1:
+              "Soy una profesional de contabilidad e impuestos de nivel ejecutivo con más de 20 años de experiencia apoyando a pequeñas y medianas empresas en industrias altamente reguladas e intensivas en efectivo.",
+            about_p2:
+              "Como expresidenta y fundadora de una empresa, personalmente administré la contabilidad, los controles financieros, el manejo de efectivo, la coordinación de nómina y el cumplimiento tributario a nivel de entidad para múltiples compañías operativas.",
+            about_p3:
+              "Hoy me enfoco en brindar servicios de contabilidad, teneduría de libros, apoyo fiscal y consultoría empresarial para empresarios que necesitan libros precisos, operaciones más ordenadas y una preparación confiable al cierre del año.",
+            competencies_title: "Competencias Clave",
+            competency_1: "Operaciones Financieras",
+            competency_2: "Consultoría Empresarial",
+            competency_3: "Controles Internos",
+            competency_4: "Conciliación de Efectivo",
+            competency_5: "Preparación de Impuestos",
+            competency_6: "Preparación Regulatoria",
+            competency_7: "Coordinación de Nómina",
+            competency_8: "Riesgo y Cumplimiento",
+            competency_9: "Desarrollo de SOP",
+            competency_10: "Gestión de P&L",
+            experience_title: "Experiencia Profesional Destacada",
+            experience_1_title: "PAYDAY SOLUTIONS | Fundadora / Presidenta (2009-2026)",
+            experience_1_desc:
+              "Construí y operé una empresa de servicios financieros con múltiples ubicaciones en el sur de Florida, asumiendo la responsabilidad completa de la contabilidad, conciliaciones, coordinación de nómina, reportes financieros y apoyo en cumplimiento tributario.",
+            experience_2_title: "CAR DOME INC. SOLUTIONS | Presidenta (2002-2008) | Contralora (1998-2002)",
+            experience_2_desc:
+              "Dirigí el desempeño financiero y operativo de ubicaciones en varios estados, fortalecí procedimientos contables, mejoré la consistencia de los reportes y apoyé la preparación de impuestos y los sistemas de control interno.",
+            experience_3_title: "Sistemas",
+            experience_3_desc: "ProSeries, QuickBooks y CheckPro.",
+            contact_title: "Contacto",
+            contact_lead: "Comuníquese en cualquier momento.",
+            contact_phone: "Teléfono",
+            contact_email: "Correo electrónico",
+          },
+        };
+
+        const readStoredLanguage = () => {
+          try {
+            return window.localStorage.getItem(languageStorageKey);
+          } catch (error) {
+            return null;
+          }
+        };
+
+        const writeStoredLanguage = (language) => {
+          try {
+            window.localStorage.setItem(languageStorageKey, language);
+          } catch (error) {
+            // Ignore storage failures and keep the current in-memory language.
+          }
+        };
+
+        const updateLanguageToggle = (language) => {
+          const nextLanguage =
+            language === "es"
+              ? { code: "en", fullLabel: "English Version", shortLabel: "English", flag: "assets/english.png" }
+              : { code: "es", fullLabel: "Version en Espanol", shortLabel: "Espanol", flag: "assets/spanish.png" };
+
+          languageToggleButtons.forEach((button) => {
+            const flag = button.querySelector(".lang-switch-flag");
+            const fullLabel = button.querySelector('[data-lang-label="full"]');
+            const shortLabel = button.querySelector('[data-lang-label="short"]');
+
+            button.dataset.nextLanguage = nextLanguage.code;
+            button.setAttribute("aria-label", nextLanguage.fullLabel);
+            button.setAttribute("title", nextLanguage.fullLabel);
+
+            if (flag) {
+              flag.src = nextLanguage.flag;
+            }
+
+            if (fullLabel) {
+              fullLabel.textContent = nextLanguage.fullLabel;
+            }
+
+            if (shortLabel) {
+              shortLabel.textContent = nextLanguage.shortLabel;
+            }
+          });
+        };
+
+        const applyLanguage = (language) => {
+          const nextLanguage = language === "es" ? "es" : "en";
+          const dictionary = translations[nextLanguage];
+
+          i18nElements.forEach((element) => {
+            const key = element.dataset.i18n;
+            const attribute = element.dataset.i18nAttr;
+            const value = dictionary[key];
+
+            if (typeof value !== "string") {
+              return;
+            }
+
+            if (attribute) {
+              element.setAttribute(attribute, value);
+            } else {
+              element.textContent = value;
+            }
+          });
+
+          document.documentElement.lang = nextLanguage;
+          document.title = dictionary.meta_title;
+          updateLanguageToggle(nextLanguage);
+          writeStoredLanguage(nextLanguage);
+        };
 
         if (isReload) {
           window.scrollTo(0, 0);
@@ -1237,7 +1680,14 @@
           window.requestAnimationFrame(setFoldState);
         };
 
+        languageToggleButtons.forEach((button) => {
+          button.addEventListener("click", () => {
+            applyLanguage(button.dataset.nextLanguage);
+          });
+        });
+
         applyFoldClass();
+        applyLanguage(readStoredLanguage());
         window.addEventListener("scroll", onScroll, { passive: true });
         window.addEventListener("resize", setFoldState);
 
