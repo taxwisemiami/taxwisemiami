@@ -9,6 +9,12 @@
       if ("scrollRestoration" in history) {
         history.scrollRestoration = "manual";
       }
+
+      window.__taxwiseForceInitialTop = Boolean(window.location.hash);
+
+      if (window.__taxwiseForceInitialTop && "replaceState" in history) {
+        history.replaceState(null, "", window.location.pathname + window.location.search);
+      }
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -61,7 +67,8 @@
 
       .page {
         width: 100%;
-        margin: 0 0 76px;
+        padding-bottom: 100px;
+        margin: 0;
       }
 
       .hero {
@@ -282,13 +289,11 @@
         outline-offset: 2px;
       }
 
-      .lang-switch-flag {
+      .lang-switch-icon {
         width: 22px;
         height: 22px;
-        border-radius: 999px;
-        object-fit: cover;
+        display: block;
         flex: 0 0 auto;
-        box-shadow: none;
       }
 
       .lang-switch-label {
@@ -317,7 +322,7 @@
         box-shadow: none;
       }
 
-      .lang-switch-nav .lang-switch-flag {
+      .lang-switch-nav .lang-switch-icon {
         width: 20px;
         height: 20px;
       }
@@ -371,7 +376,7 @@
         display: none;
       }
 
-      .topbar .lang-switch .lang-switch-flag {
+      .topbar .lang-switch .lang-switch-icon {
         width: 20px;
         height: 20px;
       }
@@ -400,11 +405,11 @@
       }
 
       .hero h1 {
-        margin-top: 14vh;
-        font-size: 10vw;
+        margin: 14vh auto 0;
+        font-size: clamp(4rem, 4.8vw, 6rem);
         line-height: 1.02;
         letter-spacing: -0.02em;
-        max-width: 980px;
+        max-width: min(1120px, 100%);
         color: #ffffff;
         text-align: center;
         text-wrap: balance;
@@ -497,6 +502,7 @@
       }
 
       #contact {
+        padding-bottom: 52px;
         background:
           radial-gradient(circle at 18% 20%, rgba(239, 127, 99, 0.2), transparent 28%),
           radial-gradient(circle at 88% 18%, rgba(86, 194, 177, 0.16), transparent 24%),
@@ -1044,7 +1050,8 @@
 
       @media (max-width: 760px) {
         .page {
-          margin: 0 0 45px;
+          margin: 0;
+          padding-bottom: 100px;
         }
 
       .hero-copy {
@@ -1177,7 +1184,7 @@
             0 12px 22px rgba(5, 18, 30, 0.22);
         }
 
-        .hero .lang-switch-nav .lang-switch-flag {
+        .hero .lang-switch-nav .lang-switch-icon {
           width: 22px;
           height: 22px;
         }
@@ -1260,7 +1267,7 @@
             <a class="nav-contact" href="#contact" data-i18n="nav_contact">Contact</a>
           </nav>
           <button class="lang-switch" type="button" data-language-toggle aria-label="Versión en Español">
-            <img class="lang-switch-flag" src="assets/spanish.png" alt="" />
+            <img class="lang-switch-icon" src="assets/language.svg" alt="" />
             <span class="lang-switch-label lang-switch-label-full" data-lang-label="full">Versión en Español</span>
             <span class="lang-switch-label lang-switch-label-short" data-lang-label="short">Español</span>
           </button>
@@ -1278,7 +1285,7 @@
                 </a>
                 <nav aria-label="Main Navigation" data-i18n="main_nav_label" data-i18n-attr="aria-label">
                   <button class="lang-switch lang-switch-nav" type="button" data-language-toggle aria-label="Versión en Español">
-                    <img class="lang-switch-flag" src="assets/spanish.png" alt="" />
+                    <img class="lang-switch-icon" src="assets/language.svg" alt="" />
                     <span class="lang-switch-label lang-switch-label-full" data-lang-label="full">Versión en Español</span>
                     <span class="lang-switch-label lang-switch-label-short" data-lang-label="short">Español</span>
                   </button>
@@ -1462,6 +1469,7 @@
         const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
         const navEntry = performance.getEntriesByType("navigation")[0];
         const isReload = navEntry ? navEntry.type === "reload" : performance.navigation && performance.navigation.type === 1;
+        const shouldForceInitialTop = Boolean(window.__taxwiseForceInitialTop) || isReload;
         let isFolded = window.scrollY > foldEnterThreshold;
         let isTicking = false;
         const translations = {
@@ -1606,21 +1614,16 @@
         const updateLanguageToggle = (language) => {
           const nextLanguage =
             language === "es"
-              ? { code: "en", fullLabel: "English Version", shortLabel: "English", flag: "assets/usa.png" }
-              : { code: "es", fullLabel: "Version en Espanol", shortLabel: "Espanol", flag: "assets/spanish.png" };
+              ? { code: "en", fullLabel: "English Version", shortLabel: "English" }
+              : { code: "es", fullLabel: "Version en Espanol", shortLabel: "Espanol" };
 
           languageToggleButtons.forEach((button) => {
-            const flag = button.querySelector(".lang-switch-flag");
             const fullLabel = button.querySelector('[data-lang-label="full"]');
             const shortLabel = button.querySelector('[data-lang-label="short"]');
 
             button.dataset.nextLanguage = nextLanguage.code;
             button.setAttribute("aria-label", nextLanguage.fullLabel);
             button.setAttribute("title", nextLanguage.fullLabel);
-
-            if (flag) {
-              flag.src = nextLanguage.flag;
-            }
 
             if (fullLabel) {
               fullLabel.textContent = nextLanguage.fullLabel;
@@ -1658,7 +1661,7 @@
           writeStoredLanguage(nextLanguage);
         };
 
-        if (isReload) {
+        if (shouldForceInitialTop) {
           window.scrollTo(0, 0);
           window.addEventListener("load", () => window.scrollTo(0, 0), { once: true });
         }
